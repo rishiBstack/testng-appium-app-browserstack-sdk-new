@@ -3,8 +3,8 @@
 # =============================
 # Add your BrowserStack userName and accessKey here or set BROWSERSTACK_USERNAME and
 # BROWSERSTACK_ACCESS_KEY as env variables
-userName: BROWSERSTACK_USERNAME
-accessKey: BROWSERSTACK_ACCESS_KEY
+userName: 
+accessKey: 
 
 # ======================
 # BrowserStack Reporting
@@ -23,10 +23,11 @@ buildIdentifier: '#${BUILD_NUMBER}' # Supports strings along with either/both ${
 # Set `framework` of your test suite. Example, `testng`, `cucumber`, `cucumber-testng`
 # This property is needed to send test context to BrowserStack (test name, status)
 framework: testng
-
 source: testng:appium-sample-sdk:v1.1
 
-app: ./BStackSampleApp.ipa
+
+
+app: bs://bc667ddab7356bb6a2243ee943d26970579f17c4
 #app: ./LocalSample.ipa #For running local tests
 
 # =======================================
@@ -36,16 +37,19 @@ app: ./BStackSampleApp.ipa
 # Entire list available here -> (https://www.browserstack.com/list-of-browsers-and-platforms/automate)
 
 platforms:
-  - deviceName: iPhone 14 Pro
-    osVersion: 16
-    platformName: ios
-  - deviceName: iPhone 13 Pro
-    osVersion: 15
-    platformName: ios
-  - deviceName: iPhone XS
-    osVersion: 14
-    platformName: ios
-
+  - platformName: ios
+    platformVersion: 18
+    deviceName: iPad Pro 11 2021
+    noReset: false
+    fullReset: true
+    deviceOrientation: portrait
+appium:settings[allowInvisibleElements]: true 
+appium:settings[snapshotMaxDepth]: 500
+appium:settings[customSnapshotTimeout]: 500
+appiumVersion: "2.6.0"
+appium:nativeWebTap: true
+appium:disableSuppressAccessibilityService: false
+appium:settings[waitForIdleTimeout]: 100
 # =======================
 # Parallels per Platform
 # =======================
@@ -56,24 +60,25 @@ platforms:
 #
 # Example 2 - If you have configured 1 platform and set `parallelsPerPlatform` as 5, a total of 5 (1 * 5) parallel threads will be used on BrowserStack
 parallelsPerPlatform: 1
-
+idletimeout: 300
 # ==========================================
 # BrowserStack Local
 # (For localhost, staging/private websites)
 # ==========================================
 # Set browserStackLocal to true if your website under test is not accessible publicly over the internet
 # Learn more about how BrowserStack Local works here -> https://www.browserstack.com/docs/automate/selenium/local-testing-introduction
-browserstackLocal: true # <boolean> (Default false)
+browserstackLocal: false # <boolean> (Default false)
 #browserStackLocalOptions:
 #Options to be passed to BrowserStack local in-case of advanced configurations
 #  localIdentifier: # <string> (Default: null) Needed if you need to run multiple instances of local.
 #  forceLocal: true  # <boolean> (Default: false) Set to true if you need to resolve all your traffic via BrowserStack Local tunnel.
 # Entire list of arguments available here -> https://www.browserstack.com/docs/automate/selenium/manage-incoming-connections
 
+#interactiveDebugging: true,
 # ===================
 # Debugging features
 # ===================
-debug: false # <boolean> # Set to true if you need screenshots for every selenium command ran
-networkLogs: false # <boolean> Set to true to enable HAR logs capturing
-consoleLogs: errors # <string> Remote browser's console debug levels to be printed (Default: errors)
+debug: true # <boolean> # Set to true if you need screenshots for every selenium command ran
+networkLogs: true # <boolean> Set to true to enable HAR logs capturing
+consoleLogs: verbose # <string> Remote browser's console debug levels to be printed (Default: errors)
 # Available options are `disable`, `errors`, `warnings`, `info`, `verbose` (Default: errors)

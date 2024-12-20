@@ -4,6 +4,7 @@
     <test name="FirstTest">
         <classes>
             <class name="com.browserstack.FirstTest"/>
+             <class name="com.browserstack.SearchTest"/>
         </classes>
     </test>
 </suite>
